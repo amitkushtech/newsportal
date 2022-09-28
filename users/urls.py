@@ -12,6 +12,7 @@ router.register("users", views.CustomUserViews)
 app_name = "users"
 urlpatterns = [
     path("", include(router.urls)),
+    path("login", views.LoginAPIView().as_view(), name="login")
     # path("rest-auth/", include("rest_auth.urls")),
     # path("rest-auth/registration/", include("rest_auth.registration.urls")),
     # path("account/", include("allauth.urls")),
