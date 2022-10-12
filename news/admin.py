@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import NewsCategories, News
+from .models import NewsCategories, News, Comment, Rating
 
 
 # Register your models here.
@@ -15,3 +15,19 @@ admin.site.register(NewsCategories, NewsCategory)
 
 
 admin.site.register(News)
+admin.site.register(Comment)
+
+
+class Ratings(admin.ModelAdmin):
+    fields = (
+        "user",
+        "news",
+        "one",
+        "two",
+        "three",
+        "four",
+        "five",
+    )
+
+
+admin.site.register(Rating, Ratings)

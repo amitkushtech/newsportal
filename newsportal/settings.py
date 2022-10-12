@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "rest_auth",
     "django.contrib.sites",
     "allauth",
+    "django_filters",
     "allauth.account",
     "rest_auth.registration",
 ]
@@ -143,3 +144,6 @@ ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = "/?verification=1"
 
 SITE_ID = 1
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+REST_FRAMEWORK = {
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"]
+}

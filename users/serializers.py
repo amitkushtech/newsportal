@@ -21,6 +21,15 @@ class CustomUserSerializers(serializers.ModelSerializer):
             "is_superuser",
         )
 
+    def validate(self, data):
+        emails = data.get("email")
+        if CustomUser.objects.filter(email=emails).exists():
+            print("Already Exist")
+            raise serializers.ValidationError(
+                "Sorry!! the email address already exist."
+            )
+        return data
+
 
 class LoginSerializer(serializers.Serializer):
     email = serializers.EmailField(label="Email")
@@ -56,3 +65,9 @@ class ReadUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         exclude = ["password", "is_staff", "is_superuser"]
+
+
+class ChangePasswordSerializer(serializers.Serializer):
+    model = CustomUser
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
